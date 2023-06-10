@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import TaskCard from './TaskCard'
-
+import { TaskContext } from '../context/TaskContext'
 // console.log(tasks)
 
-function TaskList({ Tasks }) {
+function TaskList() {
 
-  if (Tasks.length === 0) {
-    return <h1>No hay tareas aun</h1>
+  const { tasks} = useContext(TaskContext)
+
+  if (tasks.length === 0) {
+    return <h1 className='text-white text-4xl text-center'>No hay tareas aun</h1>
   }
 
   return (
-    <div>{Tasks.map(task =>
+    <div className='grid grid-cols-4 gap-2 '>{tasks.map(task =>
 
-      // <div key={one.id}>
-
-      //   <h1>{one.title}</h1>
-      //   <p>{one.description}</p>
-
-      // </div>
       <TaskCard task={task} key={task.id}></TaskCard>
 
-      )
+    )
 
     }</div>
   )
